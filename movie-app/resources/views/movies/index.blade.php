@@ -47,21 +47,21 @@
                                     <div class="col-span-3 flex items-center">
                                         <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
                                             <div class="w-12 rounded-md">
-                                                <img src="src/images/movie/{{ $movie['poster'] }}" alt="Product" />
+                                                <img src="src/images/movie/{{ $movie->poster }}" alt="Product" />
                                             </div>
                                             <p class="text-sm font-medium text-black dark:text-white">
-                                              {{ $movie['title'] }}
+                                              {{ $movie->title }}
                                             </p>
                                         </div>
                                     </div>
                                     <div class="col-span-1 items-center sm:flex">
                                         <p class="text-sm font-medium text-black dark:text-white">
-                                        {{ $movie['genre'] }}
+                                        {{ $movie->genre->name }}
                                         </p>
                                     </div>
                                     <div class="col-span-3 flex items-center">
                                         <p class="text-sm font-medium text-black dark:text-white">
-                                        {{ $movie['sypnosis'] }}
+                                        {{ $movie->synopsis }}
                                         </p>
                                     </div>
                                     <div class="col-span-1 flex items-center">

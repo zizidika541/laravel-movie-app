@@ -18,7 +18,7 @@
                             </button>
                             <!-- Hamburger Toggle BTN -->
                             <a class="block flex-shrink-0 lg:hidden" href="index.html">
-                                <img src="src/images/logo/logo-icon.svg" alt="Logo" />
+                                <img src="/src/images/logo/logo-icon.svg" alt="Logo" />
                             </a>
                         </div>
                         <div class="hidden sm:block">
@@ -91,7 +91,7 @@
                                     </span>
 
                                     <span class="h-12 w-12 rounded-full">
-                                        <img src="src/images/user/user-01.png" alt="User" />
+                                        <img src="/src/images/user/user-01.png" alt="User" />
                                     </span>
 
                                     <svg :class="dropdownOpen && 'rotate-180'" class="hidden fill-current sm:block" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">

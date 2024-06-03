@@ -7,7 +7,7 @@
         <title>Movie App | Template by TailAdmin</title>
         <link rel="icon" href="favicon.ico" />
         <script src="https://cdn.tailwindcss.com"></script>
-        <link href="style.css" rel="stylesheet" />
+        <link href="/style.css" rel="stylesheet" />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net" />
@@ -44,6 +44,6 @@
             </div>
         </div>
 
-        <script defer src="bundle.js"></script>
+        <script defer src="/bundle.js"></script>
     </body>
 </html>

@@ -57,14 +57,16 @@
                             Review Form
                         </h3>
                     </div>
-                    <form action="/reviews" method="POST">
+                    <form action="/reviews/{{ $review->id }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="p-6.5">
                             <div class="mb-4.5">
                                 <label class="mb-3 block text-sm font-medium text-black dark:text-white"> ID <span class="text-meta-1">*</span> </label>
                                 <input
                                     id="id"
                                     name="id"
+                                    value="{{$review->id}}"
                                     type="number"
                                     placeholder="Enter anime id"
                                     class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -85,7 +87,7 @@
                                             Type your movie
                                         </option>
                                         @foreach ($movies as $movie)
-                                            <option value="{{ $movie->id }}">{{ $movie->title }}</option>
+                                        <option value="{{ $movie->id }}" {{ $movie->id == $review->movie_id ? 'selected' : '' }}>{{ $movie->title }}</option>
                                         @endforeach
                                     </select>
                                     <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
@@ -111,6 +113,7 @@
                                 <input
                                     id="poster"
                                     name="poster"
+                                    value="{{$review->poster}}"
                                     type="text"
                                     placeholder="Enter poster link"
                                     class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -122,6 +125,7 @@
                                 <input
                                     id="user"
                                     name="user"
+                                    value="{{$review->user}}"
                                     type="text"
                                     placeholder="Enter Username"
                                     class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -133,6 +137,7 @@
                                 <input
                                     id="rating"
                                     name="rating"
+                                    value="{{$review->rating}}"
                                     type="text"
                                     placeholder="Enter your Rating"
                                     class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -144,6 +149,7 @@
                                 <input
                                     id="date"
                                     name="date"
+                                    value="{{$review->date}}"
                                     type="date"
                                     placeholder="Enter Date"
                                     class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"

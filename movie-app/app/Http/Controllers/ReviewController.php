@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\Models\Movie;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -27,11 +28,17 @@ class ReviewController extends Controller
         $validatedData = $request->validate([
             'id' => 'required',
             'movie_id' => 'required',
-            'poster' => 'required',
+            'poster' => 'required|image',
             'user' => 'required',
             'rating' => 'required',
             'date' => 'required',
         ]);
+
+        if ($request->hasFile('poster')) {
+            $imageName = time() . '.' . $request->file('poster')->getClientOriginalExtension();
+            $request->file('poster')->storeAs('src/images/movie', $imageName, 'public');
+            $validatedData['poster'] = $imageName;
+        }
     
         Review::create($validatedData);
     
@@ -40,6 +47,12 @@ class ReviewController extends Controller
 
     public function destroy(Review $review)
     {
+
+        $poster = Storage::disk('public')->delete('src/images/movie/' . $review->poster);
+
+        $review->delete($poster);
+        return redirect('/reviews')->with('success', 'Review deleted successfully!');
+
         $review->delete();
         return redirect('/reviews')->with('success', 'Review deleted successfully!');
     }
@@ -55,11 +68,21 @@ class ReviewController extends Controller
         $validatedData = $request->validate([
             'id' => 'required',
             'movie_id' => 'required',
-            'poster' => 'required',
+            'poster' => 'nullable|image',
             'user' => 'required',
             'rating' => 'required',
             'date' => 'required',
         ]);
+
+        if ($request->hasFile('poster')) {
+            // Delete the old image
+            Storage::disk('public')->delete('src/images/movie/' . $review->poster);
+    
+            // Upload the new image
+            $imageName = time() . '.' . $request->file('poster')->getClientOriginalExtension();
+            $request->file('poster')->storeAs('src/images/movie', $imageName, 'public');
+            $validatedData['poster'] = $imageName;
+        }
     
         $review->update($validatedData);
     
